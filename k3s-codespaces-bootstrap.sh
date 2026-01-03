@@ -63,6 +63,10 @@ if ! grep -q "KUBECONFIG=/etc/rancher/k3s/k3s.yaml" ~/.bashrc 2>/dev/null; then
   echo "export KUBECONFIG=/etc/rancher/k3s/k3s.yaml" >> ~/.bashrc
 fi
 
+echo "[+] Ensuring kubectl uses k3s"
+sudo ln -sf /usr/local/bin/k3s /usr/local/bin/kubectl
+
+
 echo "[+] Verifying cluster"
 sudo k3s kubectl get nodes
 sudo k3s kubectl get ns
